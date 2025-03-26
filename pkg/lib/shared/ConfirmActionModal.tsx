@@ -20,13 +20,17 @@ export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = (
   function tryOpen() {
     if (openingValidation()) {
       handleModalToggle();
-      action();
     }
+  }
+
+  function confirmAction() {
+    handleModalToggle();
+    action();
   }
 
   return (
     <React.Fragment>
-      <Button variant={variant} onClick={handleModalToggle}>
+      <Button variant={variant} onClick={tryOpen}>
         {buttonText}
       </Button>
       <Modal
@@ -35,7 +39,7 @@ export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = (
         isOpen={isModalOpen}
         onClose={handleModalToggle}
         actions={[
-          <Button key="confirm" variant={variant} onClick={tryOpen}>
+          <Button key="confirm" variant={variant} onClick={confirmAction}>
             Confirm
           </Button>,
           <Button key="cancel" variant="link" onClick={handleModalToggle}>
