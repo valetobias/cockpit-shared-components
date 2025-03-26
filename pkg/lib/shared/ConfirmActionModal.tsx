@@ -3,14 +3,14 @@ import { Button, Modal, ModalVariant } from '@patternfly/react-core'
 
 interface ConfirmActionProps {
   action: () => void;
-  openingValidation: () => boolean;
+  openingValidation?: () => boolean;
   variant?: "link" | "primary" | "secondary" | "tertiary" | "danger" | "warning" | "plain" | "control" | undefined;
   message: string;
   buttonText: string;
 }
 
 
-export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = ({ action, variant='primary', message, buttonText, openingValidation }) => {
+export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = ({ action, variant='primary', message, buttonText, openingValidation=()=>true }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleModalToggle = () => {
