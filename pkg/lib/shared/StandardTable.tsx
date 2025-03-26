@@ -23,9 +23,10 @@ interface TableProps {
   headerValues: HeaderValue[];
   rows: RowProps[];
   ready: boolean;
+  additonalToolbarItems?: ReactNode[];
 }
 
-export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValues, rows, ready }) => {
+export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValues, rows, ready, additonalToolbarItems }) => {
   const [ searchValue, setSearchValue ] = useState('');
   const filteredRows = rows.filter(onFilter);
   const [activeSortIndex, setActiveSortIndex] = useState(0);
@@ -94,6 +95,11 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
               onClear={() => setSearchValue('')}
             />
           </ToolbarItem>
+          {additonalToolbarItems && additonalToolbarItems.map(item =>
+            <ToolbarItem>
+              {item}
+            </ToolbarItem>
+          )}
         </ToolbarContent>
       </Toolbar>
       <Table
