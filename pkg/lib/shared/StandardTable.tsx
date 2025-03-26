@@ -25,7 +25,7 @@ interface TableProps {
   ready: boolean;
 }
 
-export const DomainTable: React.FunctionComponent<TableProps> = ({ headerValues, rows, ready }) => {
+export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValues, rows, ready }) => {
   const [ searchValue, setSearchValue ] = useState('');
   const filteredRows = rows.filter(onFilter);
   const [activeSortIndex, setActiveSortIndex] = useState(0);
