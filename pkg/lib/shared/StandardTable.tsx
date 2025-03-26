@@ -5,7 +5,7 @@ import { LoadingData } from "./LoadingData";
 import { MissingData } from "./MissingData";
 import './styles.scss';
 
-interface HeaderValue {
+export interface HeaderValue {
   text?: string;
   screenReaderText?: string;
   sortable?: boolean;
