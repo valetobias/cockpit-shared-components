@@ -39,8 +39,7 @@ export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = (
   return (
     <React.Fragment>
       <Button variant={variant} onClick={tryOpen}>
-        {buttonIcon && <Icon>{buttonIcon}</Icon>}
-        {buttonText}
+        {buttonIcon && <Icon>{buttonIcon}</Icon>} {buttonText}
       </Button>
       <Modal
         variant={ModalVariant.small}
