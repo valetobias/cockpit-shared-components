@@ -12,6 +12,7 @@ export interface HeaderValue {
   filtrable?: boolean;
   width?: 15 | 10 | 20 | 25 | 30 | 35 | 40 | 45 | 50 | 60 | 70 | 80 | 90 | 100;
   modifier?: "wrap" | "breakWord" | "fitContent" | "nowrap" | "truncate";
+  textCenter?: boolean;
 }
 
 interface RowProps {
@@ -128,7 +129,7 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
                 width={headerValue.width}
                 modifier={headerValue.modifier}
                 sort={headerValue.sortable ? getSortParams(index) : undefined}
-                textCenter
+                textCenter={headerValue.textCenter}
               >
                 {headerValue.text}
               </Th>
