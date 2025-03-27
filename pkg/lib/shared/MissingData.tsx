@@ -1,5 +1,5 @@
 import React from 'react';
-import { EmptyState, EmptyStateVariant, EmptyStateIcon, EmptyStateHeader, Bullseye } from '@patternfly/react-core'
+import { EmptyState, EmptyStateVariant, Bullseye } from '@patternfly/react-core'
 import { Tr,Td } from '@patternfly/react-table';
 import SearchIcon from '@patternfly/react-icons/dist/esm/icons/search-icon';
 
@@ -12,13 +12,8 @@ export const MissingData: React.FunctionComponent<MissingDataProps> = ({ colSpan
     <Tr>
       <Td colSpan={colSpan}>
         <Bullseye>
-          <EmptyState variant={EmptyStateVariant.sm}>
-            <EmptyStateHeader
-              icon={<EmptyStateIcon icon={SearchIcon} />}
-              titleText="No results found"
-              headingLevel="h2"
-            />
-          </EmptyState>
+          <EmptyState  headingLevel="h2" icon={SearchIcon}  titleText="No results found" variant={EmptyStateVariant.sm}>
+            </EmptyState>
         </Bullseye>
       </Td>
     </Tr>
