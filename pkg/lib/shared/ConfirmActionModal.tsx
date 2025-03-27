@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
-	Button
+	Button,
+  Icon
 } from '@patternfly/react-core';
 import {
 	Modal,
@@ -13,10 +14,11 @@ interface ConfirmActionProps {
   variant?: "link" | "primary" | "secondary" | "tertiary" | "danger" | "warning" | "plain" | "control" | undefined;
   message: string;
   buttonText: string;
+  buttonIcon?: ReactNode;
 }
 
 
-export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = ({ action, variant='primary', message, buttonText, openingValidation=()=>true }) => {
+export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = ({ action, variant='primary', message, buttonText, openingValidation=()=>true, buttonIcon }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleModalToggle = () => {
@@ -37,6 +39,7 @@ export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = (
   return (
     <React.Fragment>
       <Button variant={variant} onClick={tryOpen}>
+        {buttonIcon && <Icon>{buttonIcon}</Icon>}
         {buttonText}
       </Button>
       <Modal
