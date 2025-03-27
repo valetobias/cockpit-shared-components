@@ -22,12 +22,12 @@ interface RowProps {
 interface TableProps {
   headerValues: HeaderValue[];
   rows: RowProps[];
-  ready: boolean;
+  ready?: boolean;
   additonalToolbarItems?: ReactNode[];
-  secondaryToolbarItems?: ReactNode[];
+  secondaryToolbar?: ReactNode;
 }
 
-export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValues, rows, ready, additonalToolbarItems, secondaryToolbarItems }) => {
+export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValues, rows, ready=true, additonalToolbarItems, secondaryToolbar }) => {
   const [ searchValue, setSearchValue ] = useState('');
   const filteredRows = rows.filter(onFilter);
   const [activeSortIndex, setActiveSortIndex] = useState(0);
@@ -109,19 +109,7 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
           </ToolbarContent>
         </Toolbar>
       }
-      {secondaryToolbarItems &&
-        <Toolbar isSticky>
-          <ToolbarContent>
-            {
-              additonalToolbarItems!.map(item =>
-                <ToolbarItem>
-                  {item}
-                </ToolbarItem>
-              )
-            }
-          </ToolbarContent>
-        </Toolbar>
-      }
+      {secondaryToolbar}
       <Table
       aria-label="Table"
       variant='compact'
@@ -142,7 +130,7 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
           </Tr>
         </Thead>
         <Tbody>
-          {!ready? <LoadingData colSpan={6} /> : filteredRows.length === 0 ? <MissingData colSpan={6} /> : sortedRows.map(element => element.row)}
+          {!ready ? <LoadingData colSpan={6} /> : filteredRows.length === 0 ? <MissingData colSpan={6} /> : sortedRows.map(element => element.row)}
         </Tbody>
       </Table>
     </>
