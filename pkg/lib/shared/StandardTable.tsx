@@ -10,7 +10,7 @@ export interface HeaderValue {
   screenReaderText?: string;
   sortable?: boolean;
   filtrable?: boolean;
-  width?: 15 | 10 | 20 | 25 | 30 | 35 | 40 | 45 | 50 | 60 | 70 | 80 | 90 | 100;
+  width?: 10 | 15 | 20 | 25 | 30 | 35 | 40 | 45 | 50 | 60 | 70 | 80 | 90 | 100;
   modifier?: "wrap" | "breakWord" | "fitContent" | "nowrap" | "truncate";
   textCenter?: boolean;
 }
@@ -126,7 +126,7 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
             {headerValues.map((headerValue, index) =>
               <Th
                 screenReaderText={headerValue.screenReaderText}
-                width={headerValue.width}
+                className={`width-${headerValue.width}`}
                 modifier={headerValue.modifier}
                 sort={headerValue.sortable ? getSortParams(index) : undefined}
                 textCenter={headerValue.textCenter}
