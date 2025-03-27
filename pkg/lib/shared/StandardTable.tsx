@@ -70,6 +70,12 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
     columnIndex
   });
 
+  function joinFilters(filters: string[]): string {
+    if (filters.length === 0) return "";
+    if (filters.length === 1) return filters[0];
+    return `${filters.splice(0, -1).join(', ')} or ${filters[-1]}`
+  }
+
   
   let sortedRows = filteredRows.sort((a, b) => {
     const aValue = a.values[activeSortIndex];
@@ -89,12 +95,12 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
   return (
     <>
       {(anyFiltrable || additonalToolbarItems) &&
-        <Toolbar isSticky>
+        <Toolbar isStatic>
           <ToolbarContent>
             {anyFiltrable &&
               <ToolbarItem className="expand">
                 <SearchInput
-                  placeholder={`Filter by ${headerValues.filter(value => value.filtrable).map(value => value.text).reduce((prev, curr) => `${prev} ${curr}`, "")}`}
+                  placeholder={`Filter by ${joinFilters(headerValues.filter(value => value.filtrable).map(value => value.text!))}`}
                   value={searchValue}
                   onChange={(_event, value) => setSearchValue(value)}
                   onClear={() => setSearchValue('')}
