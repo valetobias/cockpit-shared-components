@@ -126,7 +126,7 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
             {headerValues.map((headerValue, index) =>
               <Th
                 screenReaderText={headerValue.screenReaderText}
-                className={`width-${headerValue.width}`}
+                className={`pf-vt-c-table pf-m-width-${headerValue.width}`}
                 modifier={headerValue.modifier}
                 sort={headerValue.sortable ? getSortParams(index) : undefined}
                 textCenter={headerValue.textCenter}
