@@ -32,6 +32,8 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
   const [activeSortIndex, setActiveSortIndex] = useState(0);
   const [activeSortDirection, setActiveSortDirection] = useState<'asc'|'desc'>('asc');
 
+  const anyFiltrable = headerValues.findIndex(value => value.filtrable) !== -1;
+
   function onFilter(row: RowProps) {
     if (searchValue === '') {
       return true;
@@ -85,23 +87,27 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
 
   return (
     <>
-      <Toolbar isSticky>
-        <ToolbarContent>
-          <ToolbarItem className="expand">
-            <SearchInput
-              placeholder={`Filter by ${headerValues.filter(value => value.filtrable).map(value => value.text).reduce((prev, curr) => `${prev} ${curr}`)}`}
-              value={searchValue}
-              onChange={(_event, value) => setSearchValue(value)}
-              onClear={() => setSearchValue('')}
-            />
-          </ToolbarItem>
-          {additonalToolbarItems && additonalToolbarItems.map(item =>
-            <ToolbarItem>
-              {item}
-            </ToolbarItem>
-          )}
-        </ToolbarContent>
-      </Toolbar>
+      {(anyFiltrable || additonalToolbarItems) &&
+        <Toolbar isSticky>
+          <ToolbarContent>
+            {anyFiltrable &&
+              <ToolbarItem className="expand">
+                <SearchInput
+                  placeholder={`Filter by ${headerValues.filter(value => value.filtrable).map(value => value.text).reduce((prev, curr) => `${prev} ${curr}`, "")}`}
+                  value={searchValue}
+                  onChange={(_event, value) => setSearchValue(value)}
+                  onClear={() => setSearchValue('')}
+                />
+              </ToolbarItem>
+            }
+            {additonalToolbarItems && additonalToolbarItems.map(item =>
+              <ToolbarItem>
+                {item}
+              </ToolbarItem>
+            )}
+          </ToolbarContent>
+        </Toolbar>
+      }
       <Table
       aria-label="Table"
       variant='compact'
