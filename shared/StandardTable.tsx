@@ -124,7 +124,7 @@ export const StandardTable: React.FunctionComponent<TableProps> = ({ headerValue
         <Thead>
           <Tr>
             {headerValues.map((headerValue, index) =>
-              <Th
+              <Th // This is an incorrect error, as sort can indeed be undefined. I might just be using a too new version of TS
                 screenReaderText={headerValue.screenReaderText}
                 className={`pf-vt-c-table pf-m-width-${headerValue.width}`}
                 modifier={headerValue.modifier}
