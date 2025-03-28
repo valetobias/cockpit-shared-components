@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Nav, NavItem, NavList } from '@patternfly/react-core';
 import cockpit from 'cockpit'
 
 interface NavBarProps {
-  location: cockpit.Location;
   pages: string[];
+  setCurrentPage: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const HorizontalNav: React.FunctionComponent<NavBarProps> = ({ pages, location }) => {
+export const HorizontalNav: React.FunctionComponent<NavBarProps> = ({ pages, setCurrentPage }) => {
   const [activeItem, setActiveItem] = React.useState(0);
 
   const onSelect = (_event: React.FormEvent<HTMLInputElement>, result: { itemId: number | string; to: string }) => {
     setActiveItem(result.itemId as number);
-    location.go(result.to);
+    cockpit.location.go(result.to);
   };
+
+  useEffect(() => {
+      function handleLocationChange() {
+        setCurrentPage(cockpit.location.path[0]);
+      }
+      cockpit.addEventListener("locationchanged", handleLocationChange);
+
+      return () => cockpit.removeEventListener("locationchanged", handleLocationChange);
+  })
 
   return (
     <Nav onSelect={onSelect} variant="horizontal" aria-label="Horizontal nav local">
