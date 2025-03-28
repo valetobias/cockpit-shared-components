@@ -1,7 +1,7 @@
 /*
  * This file is part of Cockpit-shared-components.
  *
- * Copyright (C) 2017 Red Hat, Inc.
+ * Copyright (C) 2025 Tobias Vale
  *
  * Cockpit-shared-components is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by
