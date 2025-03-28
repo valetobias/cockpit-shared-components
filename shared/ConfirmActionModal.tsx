@@ -1,12 +1,13 @@
 import React, { ReactNode } from 'react';
 import {
 	Button,
-  Icon
-} from '@patternfly/react-core';
-import {
+  Icon,
 	Modal,
-	ModalVariant
-} from '@patternfly/react-core/deprecated';
+	ModalVariant,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
+} from '@patternfly/react-core';
 
 interface ConfirmActionProps {
   action: () => void;
@@ -46,16 +47,21 @@ export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = (
         title="Confirm action"
         isOpen={isModalOpen}
         onClose={handleModalToggle}
-        actions={[
+      >
+        <ModalHeader>
+          Confirm action
+        </ModalHeader>
+        <ModalBody>
+          {message}
+        </ModalBody>
+        <ModalFooter>
           <Button key="confirm" variant={variant} onClick={confirmAction}>
             Confirm
           </Button>,
           <Button key="cancel" variant="link" onClick={handleModalToggle}>
             Cancel
           </Button>
-        ]}
-      >
-        {message}
+        </ModalFooter>
       </Modal>
     </React.Fragment>
   );
