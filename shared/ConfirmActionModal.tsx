@@ -33,12 +33,13 @@ interface ConfirmActionProps {
   openingValidation?: () => boolean;
   variant?: "link" | "primary" | "secondary" | "tertiary" | "danger" | "warning" | "plain" | "control" | undefined;
   message: string;
+  title?: string;
   buttonText: string;
   buttonIcon?: ReactNode;
 }
 
 
-export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = ({ action, variant='primary', message, buttonText, openingValidation=()=>true, buttonIcon }) => {
+export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = ({ action, variant='primary', message, buttonText, openingValidation=()=>true, buttonIcon, title }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleModalToggle = () => {
@@ -68,7 +69,7 @@ export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = (
         onClose={handleModalToggle}
       >
         <ModalHeader>
-          Confirm action
+          {title || "Confirm action"}
         </ModalHeader>
         <ModalBody>
           {message}
