@@ -57,7 +57,7 @@ export const ConfirmActionModal: React.FunctionComponent<ConfirmActionProps> = (
         <ModalFooter>
           <Button key="confirm" variant={variant} onClick={confirmAction}>
             Confirm
-          </Button>,
+          </Button>
           <Button key="cancel" variant="link" onClick={handleModalToggle}>
             Cancel
           </Button>
