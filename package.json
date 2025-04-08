@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@types/react": "18.3.13"
+    "@types/react": "18.3.20"
   },
   "dependencies": {
     "@patternfly/patternfly": "6.2.0",
